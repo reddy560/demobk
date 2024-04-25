@@ -16,9 +16,15 @@ app.get("/user",(req,res)=>{
     res.send("hello from server on /user")
 })
 app.post("/add",async(req,res)=>{
+    try{
     let data=new user(req.body)
     await data.save()
     res.json({"msg":"added"})
+    }
+    catch(err)
+    {
+        res.json(err)
+    }
 })
 
 app.listen(5002)
